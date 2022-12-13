@@ -9,12 +9,10 @@ function AppNavbar(props) {
   return (
       <Navbar bg="light" variant="light">
         <Container>
-          <Navbar.Collapse></Navbar.Collapse>
-          <Navbar.Brand className='home-page' onClick={() => props.onShowChart(false)}>תיקים</Navbar.Brand>
+          <Navbar.Brand className='home-page' onClick={() => props.onShowChart(false)}>BAGS</Navbar.Brand>
             <Nav.Link  onClick={() => props.onShowChart(true)}>
               <div className='iconClass'>
-              <BsFillBagFill >   
-            </BsFillBagFill>
+              <BsFillBagFill></BsFillBagFill>
             <span><Badge bg="secondary">{props.amount}</Badge></span>
               </div>
             </Nav.Link>

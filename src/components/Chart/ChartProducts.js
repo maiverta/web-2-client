@@ -8,48 +8,43 @@ import './ChartProducts.css'
 function ChartProducts(props) {
     const [user, setUser]= useState('');
     useEffect(() => {
-        console.log('hereeeee!!!')
         userService.getUser()
             .then((data) => {
-                console.log(data) ;setUser(data)})
+                setUser(data)})
             .catch((err) => console.log(err));
     }, []);
 
     const addUserToDb = (userBody=>{
-        console.log('fff')
-       userService.addUser(userBody).then((data)=> setUser(data)
-        );
+       userService.addUser(userBody).then((data)=> setUser(data));
     })
 
     const getUserDisplay = (()=>{
-        if(user.firstName){
-            return <User user={user}></User>;
-        } else{
-            return <UserForm user={user} onAddUser={addUserToDb}></UserForm>;
-
-        }
+        if(user.firstName) return <User user={user}></User>;
+        return <UserForm user={user} onAddUser={addUserToDb}></UserForm>;
+        
     })
     return (
-        <div className='chart-products'>
-        {    props.items.map((item,index) => { 
-            if (props.productsAmountToChart[index])return <div className="chart-product">
-                <Item key={item._id}
-                            name={item.name}
-                            price={item.price}
-                            description={item.description}
-                            image={item.image}
-                            onAddToChart={() => props.onAddToChart(index)}
-                            onRemoveFromChart={() => props.onRemoveFromChart(index)}
-                        ></Item>
-                <p>amount:{props.productsAmountToChart[index]}</p>
+        <div className='chart'>
+            {getUserDisplay()}
+            <div className='chart-list'>
+                {    props.items.map((item,index) => { 
+                    if (props.productsAmountToChart[index])return <div className="chart-product">
+                        <Item key={item._id}
+                                    name={item.name}
+                                    price={item.price}
+                                    description={item.description}
+                                    image={item.image}
+                                    onAddToChart={() => props.onAddToChart(index)}
+                                    onRemoveFromChart={() => props.onRemoveFromChart(index)}
+                                ></Item>
+                        <p>כמות:{props.productsAmountToChart[index]}</p>
+                    </div>
+                })}
             </div>
-        })}
 
-        <h2>סכום ההזמנה: { props.items.reduce(
-  (accumulator, currentValue, index) => accumulator + currentValue.price* props.productsAmountToChart[index],
-  0
-)}</h2>
-{getUserDisplay()}
+            <h2>סכום ההזמנה: ₪{ props.items.reduce((accumulator, currentValue, index) =>
+                                accumulator + currentValue.price* props.productsAmountToChart[index], 0)} 
+            </h2>
         </div>
     );
 }

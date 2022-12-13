@@ -51,7 +51,6 @@ function App() {
   return (
     <div>
       <AppNavbar amount={amountOfProducts} onShowChart={bla}></AppNavbar>
-      <h2> this is my cars</h2>
     {isShowChart ? showChart() : showProducts()}
     </div>
   );
