@@ -22,11 +22,13 @@ function App() {
 
   })
   const removeFromChart = ((productIndex)=>{
-    setAmountOfProducts(prev=> prev- 1)
+    if(amountOfProducts == 0  || productsAmountToChart[productIndex] == 0) return;
     setProductsAmountToChart(prev=> {
       prev[productIndex] = prev[productIndex] - 1;
       return [...prev];
     })
+    setAmountOfProducts(prev=> prev- 1)
+
   })
   useEffect( () => {
     console.log('hereeeee!!!')
