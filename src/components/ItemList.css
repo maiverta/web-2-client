@@ -1,0 +1,13 @@
+.item-list{
+        min-height: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        flex-direction: row;
+}
+
+.item-list > div {
+    margin: 10px;
+    min-width: 10rem;
+    flex-basis: calc(30% - 10px);
+  }

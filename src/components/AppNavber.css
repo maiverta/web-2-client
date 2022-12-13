@@ -1,0 +1,15 @@
+.iconClass{
+    cursor: pointer;
+    position: relative;
+  }
+
+.iconClass span{
+position: absolute;
+top: -3px;
+left: 5px;
+display: block;
+}
+
+.home-page{
+    cursor: pointer;
+}
